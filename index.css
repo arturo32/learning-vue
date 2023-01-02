@@ -1,0 +1,51 @@
+:root {
+	--vue-logo-dark-green: #34495e;
+	--vue-logo-light-green: #41b883;
+	--dark-white: #d6d9d7;
+
+	--pallete-1-yellow: #E9C46A;
+	--pallete-2-orange: #F4A261;
+	--pallete-3-green: #2A9D8F;
+	--pallete-4-dark-blue: #264653;
+	--pallete-5-red: #E76F51;
+}
+
+html {
+	background-color: var(--vue-logo-light-green);
+	font-family: Arial, sans-serif;
+	text-align: center;
+}
+
+body {
+	height: 100vh;
+	margin: 0;
+	contain: layout;
+}
+
+h1 {
+	color: white;
+	vertical-align: middle;
+}
+
+header {
+	height: 6%;
+}
+
+main {
+	height: 94%;
+	display: grid;
+}
+
+
+
+
+
+.color-block {
+	background-color: var(--pallete-1-yellow);
+	border-color: orangered;
+	color: var(--pallete-4-dark-blue);
+	width: 500px;
+	margin: auto;
+	border-radius: 11px;
+	padding: 8px;
+}
