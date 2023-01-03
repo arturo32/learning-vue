@@ -14,6 +14,7 @@ html {
 	background-color: var(--vue-logo-light-green);
 	font-family: Arial, sans-serif;
 	text-align: center;
+	box-sizing: border-box;
 }
 
 body {
@@ -34,6 +35,9 @@ header {
 main {
 	height: 94%;
 	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 2vw;
+	padding: 2vw;
 }
 
 
@@ -44,7 +48,6 @@ main {
 	background-color: var(--pallete-1-yellow);
 	border-color: orangered;
 	color: var(--pallete-4-dark-blue);
-	width: 500px;
 	margin: auto;
 	border-radius: 11px;
 	padding: 8px;

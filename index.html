@@ -17,6 +17,15 @@
 				{{firstReactiveData}}
 			</div>
 		</div>
+
+		<div class="color-block">
+			<span v-if="showTitle">I may or may not appear! This is called conditional rendering!</span>
+			<div>
+				<button v-on:click="toggleAppeareance"
+				v-bind:title="buttonTitle">Click me!</button>	
+			</div>
+		</div>
+
 	</main>
 	
 	
@@ -32,7 +41,20 @@
 			el: '#theVueElement',
 			data: {
 				firstReactiveData: "OMG this is really a reactive data. Try changing me at the console with \"vueInstance.firstReactiveData\".",
-				reactiveAttribute: "Hello! This title attribute is controlled by a Vue directive (v-bind)."
+				reactiveAttribute: "Hello! This title attribute is controlled by a Vue directive (v-bind).",
+				showTitle: false,
+				buttonTitle: "If you click me, a message will appear above me."
+			},
+			methods: {
+				toggleAppeareance: function () {
+					this.showTitle = !this.showTitle;
+					if(this.showTitle) {
+						this.buttonTitle = "If you click me, the message above will vanish!"
+					}
+					else {
+						this.buttonTitle = "If you click me, a message will appear above me."
+					}
+				}
 			}
 		})
 	</script>
