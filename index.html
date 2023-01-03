@@ -38,6 +38,11 @@
 			</button>
 		</div>
 
+		<div class="color-block">
+			<div>{{ dataBidingVariable }}</div>
+			<input v-model="dataBidingVariable" type="text"/>
+		</div>
+
 	</main>
 	
 	
@@ -60,7 +65,8 @@
 						"I",
 						"am",
 						"an array!"
-					]
+					],
+				dataBidingVariable: "Hello world!"
 			},
 			methods: {
 				toggleAppeareance: function() {

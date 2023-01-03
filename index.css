@@ -29,17 +29,27 @@ h1 {
 }
 
 header {
-	height: 6%;
+	height: 10%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 main {
-	height: 94%;
+	height: 90%;
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
 	gap: 2vw;
 	padding: 2vw;
 	justify-items: strech;
 	align-content: center;
+	box-sizing: border-box;
+}
+
+input {
+	border: 1px solid black;
+	border-radius: 3px;
+	height: 1.3rem;
 }
 
 
@@ -54,4 +64,5 @@ main {
 	padding: 8px;
 	display: grid;
 	align-content: center;
+	border: 3px solid var(--vue-logo-dark-green);
 }

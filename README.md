@@ -1,5 +1,5 @@
 # Learning Vue!
-One commit at the time.
+One commit at the time. Version 2.7.
 
 <p align="center">
  <img src="./site.png"
