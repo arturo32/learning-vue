@@ -12,8 +12,10 @@
 	</header>
 	<main id="theVueElement">
 		<div class="color-block">
-				Look at this beautiful piece of reactive data: 
-				<div>{{firstReactiveData}}</div>
+			Look at this beautiful piece of reactive data: 
+			<div v-bind:title="reactiveAttribute">
+				{{firstReactiveData}}
+			</div>
 		</div>
 	</main>
 	
@@ -29,7 +31,8 @@
 		let vueInstance = new Vue({
 			el: '#theVueElement',
 			data: {
-				firstReactiveData: "OMG this is really a reactive data. Try changing me at the console with \"vueInstance.firstReactiveData\"."
+				firstReactiveData: "OMG this is really a reactive data. Try changing me at the console with \"vueInstance.firstReactiveData\".",
+				reactiveAttribute: "Hello! This title attribute is controlled by a Vue directive (v-bind)."
 			}
 		})
 	</script>
