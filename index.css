@@ -35,9 +35,11 @@ header {
 main {
 	height: 94%;
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
 	gap: 2vw;
 	padding: 2vw;
+	justify-items: strech;
+	align-content: center;
 }
 
 
@@ -48,7 +50,8 @@ main {
 	background-color: var(--pallete-1-yellow);
 	border-color: orangered;
 	color: var(--pallete-4-dark-blue);
-	margin: auto;
 	border-radius: 11px;
 	padding: 8px;
+	display: grid;
+	align-content: center;
 }

@@ -19,11 +19,23 @@
 		</div>
 
 		<div class="color-block">
-			<span v-if="showTitle">I may or may not appear! This is called conditional rendering!</span>
-			<div>
-				<button v-on:click="toggleAppeareance"
-				v-bind:title="buttonTitle">Click me!</button>	
-			</div>
+			<div v-if="showTitle">I may or may not appear! This is called conditional rendering!</div>
+			<button v-on:click="toggleAppeareance" 
+					v-bind:title="buttonTitle">
+				Click me!
+			</button>
+		</div>
+
+		<div class="color-block">
+			<ol style="text-align: left;">
+				<li v-for="text in textList">
+					{{ text }}
+				</li>
+			</ol>
+			<button v-on:click="textList.push(textList[textList.length%3]);" 
+					title="Add elements to the list!">
+				Click me!
+			</button>
 		</div>
 
 	</main>
@@ -43,10 +55,15 @@
 				firstReactiveData: "OMG this is really a reactive data. Try changing me at the console with \"vueInstance.firstReactiveData\".",
 				reactiveAttribute: "Hello! This title attribute is controlled by a Vue directive (v-bind).",
 				showTitle: false,
-				buttonTitle: "If you click me, a message will appear above me."
+				buttonTitle: "If you click me, a message will appear above me.",
+				textList: [
+						"I",
+						"am",
+						"an array!"
+					]
 			},
 			methods: {
-				toggleAppeareance: function () {
+				toggleAppeareance: function() {
 					this.showTitle = !this.showTitle;
 					if(this.showTitle) {
 						this.buttonTitle = "If you click me, the message above will vanish!"
