@@ -11,22 +11,22 @@
 		<h1>Learning Vue!</h1>
 	</header>
 	<main id="theVueElement">
-		<div class="color-block">
+		<color-block title="Reactive Data">
 			Look at this beautiful piece of reactive data: 
 			<div v-bind:title="reactiveAttribute">
 				{{firstReactiveData}}
 			</div>
-		</div>
+		</color-block>
 
-		<div class="color-block">
+		<color-block title="Conditional Rendering">
 			<div v-if="showTitle">I may or may not appear! This is called conditional rendering!</div>
 			<button v-on:click="toggleAppeareance" 
 					v-bind:title="buttonTitle">
 				Click me!
 			</button>
-		</div>
+		</color-block>
 
-		<div class="color-block">
+		<color-block title="v-for">
 			<ol style="text-align: left;">
 				<li v-for="text in textList">
 					{{ text }}
@@ -36,12 +36,12 @@
 					title="Add elements to the list!">
 				Click me!
 			</button>
-		</div>
+		</color-block>
 
-		<div class="color-block">
+		<color-block title="Data Binding">
 			<div>{{ dataBidingVariable }}</div>
 			<input v-model="dataBidingVariable" type="text"/>
-		</div>
+		</color-block>
 
 	</main>
 	
@@ -54,17 +54,22 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
 	<script type="text/javascript">
-		let vueInstance = new Vue({
+		Vue.component('color-block', {
+			props: ['title'],
+			template: '<div class="color-block"><h2>{{ title }}</h2><slot></slot></div>'
+		});
+
+		var vueInstance = new Vue({
 			el: '#theVueElement',
 			data: {
-				firstReactiveData: "OMG this is really a reactive data. Try changing me at the console with \"vueInstance.firstReactiveData\".",
-				reactiveAttribute: "Hello! This title attribute is controlled by a Vue directive (v-bind).",
+				firstReactiveData: 'OMG this is really a reactive data. Try changing me at the console with "vueInstance.firstReactiveData".',
+				reactiveAttribute: 'Hello! This title attribute is controlled by a Vue directive (v-bind).',
 				showTitle: false,
-				buttonTitle: "If you click me, a message will appear above me.",
+				buttonTitle: 'If you click me, a message will appear above me.',
 				textList: [
-						"I",
-						"am",
-						"an array!"
+						'I',
+						'am',
+						'an array!'
 					],
 				dataBidingVariable: "Hello world!"
 			},
@@ -72,10 +77,10 @@
 				toggleAppeareance: function() {
 					this.showTitle = !this.showTitle;
 					if(this.showTitle) {
-						this.buttonTitle = "If you click me, the message above will vanish!"
+						this.buttonTitle = 'If you click me, the message above will vanish!'
 					}
 					else {
-						this.buttonTitle = "If you click me, a message will appear above me."
+						this.buttonTitle = 'If you click me, a message will appear above me.'
 					}
 				}
 			}

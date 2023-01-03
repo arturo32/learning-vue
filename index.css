@@ -58,11 +58,12 @@ input {
 
 .color-block {
 	background-color: var(--pallete-1-yellow);
-	border-color: orangered;
 	color: var(--pallete-4-dark-blue);
 	border-radius: 11px;
 	padding: 8px;
-	display: grid;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	align-content: center;
 	border: 3px solid var(--vue-logo-dark-green);
 }
