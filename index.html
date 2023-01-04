@@ -10,39 +10,47 @@
 	<header>
 		<h1>Learning Vue!</h1>
 	</header>
-	<main id="theVueElement">
-		<color-block title="Reactive Data">
-			Look at this beautiful piece of reactive data: 
-			<div v-bind:title="reactiveAttribute">
-				{{firstReactiveData}}
-			</div>
-		</color-block>
+	<main >
+		<div id="theVueElement">
+			<color-block title="Reactive Data">
+				Look at this beautiful piece of reactive data: 
+				<div :title="reactiveAttribute">
+					{{firstReactiveData}}
+				</div>
+			</color-block>
 
-		<color-block title="Conditional Rendering">
-			<div v-if="showTitle">I may or may not appear! This is called conditional rendering!</div>
-			<button v-on:click="toggleAppeareance" 
-					v-bind:title="buttonTitle">
-				Click me!
-			</button>
-		</color-block>
+			<color-block title="Conditional Rendering">
+				<div v-if="showTitle">I may or may not appear! This is called conditional rendering!</div>
+				<button @click="toggleAppeareance" 
+						:title="buttonTitle">
+					Click me!
+				</button>
+			</color-block>
 
-		<color-block title="v-for">
-			<ol style="text-align: left;">
-				<li v-for="text in textList">
-					{{ text }}
-				</li>
-			</ol>
-			<button v-on:click="textList.push(textList[textList.length%3]);" 
-					title="Add elements to the list!">
-				Click me!
-			</button>
-		</color-block>
+			<color-block title="v-for">
+				<ol style="text-align: left;">
+					<li v-for="text in textList">
+						{{ text }}
+					</li>
+				</ol>
+				<button @click="textList.push(textList[textList.length%3]);" 
+						title="Add elements to the list!">
+					Click me!
+				</button>
+			</color-block>
 
-		<color-block title="Data Binding">
-			<div>{{ dataBidingVariable }}</div>
-			<input v-model="dataBidingVariable" type="text"/>
-		</color-block>
-
+			<div>
+				<color-block title="Data Binding">
+					<div>{{ dataBidingVariable }}</div>
+					<input v-model="dataBidingVariable" type="text"/>
+				</color-block>
+				
+				<color-block title="Computed Property">
+					<div>{{ computedDataBidingVariable }}</div>
+					<input v-model="computedDataBidingVariable" type="text"/>
+				</color-block>
+			</div>	
+		</div>
 	</main>
 	
 	
@@ -63,15 +71,19 @@
 			el: '#theVueElement',
 			data: {
 				firstReactiveData: 'OMG this is really a reactive data. Try changing me at the console with "vueInstance.firstReactiveData".',
+				
 				reactiveAttribute: 'Hello! This title attribute is controlled by a Vue directive (v-bind).',
+				
 				showTitle: false,
 				buttonTitle: 'If you click me, a message will appear above me.',
+				
 				textList: [
 						'I',
 						'am',
 						'an array!'
 					],
-				dataBidingVariable: "Hello world!"
+				
+				dataBidingVariable: "Hello world!",
 			},
 			methods: {
 				toggleAppeareance: function() {
@@ -83,6 +95,24 @@
 						this.buttonTitle = 'If you click me, a message will appear above me.'
 					}
 				}
+			},
+			computed: {
+				/*computedDataBidingVariable: function() {
+					return this.dataBidingVariable.split('').reverse().join('');
+				}*/
+
+				computedDataBidingVariable: {
+					get: function() {
+						return this.dataBidingVariable.split('').reverse().join('');	
+
+					},
+
+					// A setter can define what happens when you change the computed property directly
+					set: function(newValue) {
+						this.dataBidingVariable = newValue.split('').reverse().join('');
+					}
+				}
+
 			}
 		})
 	</script>
