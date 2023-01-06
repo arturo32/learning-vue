@@ -49,7 +49,18 @@
 					<div>{{ computedDataBidingVariable }}</div>
 					<input v-model="computedDataBidingVariable" type="text"/>
 				</color-block>
-			</div>	
+			</div>
+			
+			<color-block title="Binding Classes"
+						:class="{warning: isEmergency}">
+				<p>
+					Just a normal message.
+				</p>
+				<button @click="isEmergency = !isEmergency" 
+						:title="isEmergency? 'Let\'s calm down' : 'EMERGENCY!'">
+					Click me!
+				</button>
+			</color-block>	
 		</div>
 	</main>
 	
@@ -84,6 +95,8 @@
 					],
 				
 				dataBidingVariable: "Hello world!",
+
+				isEmergency: false,
 			},
 			methods: {
 				toggleAppeareance: function() {
