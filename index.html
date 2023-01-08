@@ -60,7 +60,23 @@
 						:title="isEmergency? 'Let\'s calm down' : 'EMERGENCY!'">
 					Click me!
 				</button>
-			</color-block>	
+			</color-block>
+
+			<color-block title="Form Fields">
+				<p>
+					<b>The one</b>
+				</p>
+				<template v-if="theOne != ''">
+					<p>Name: {{ theOne.name }}</p>
+					<p>Age: {{ theOne.age }}</p>	
+				</template>
+				
+				<!-- Here, v-model and v-bind:value are being used to bind objects to the value of the select tag -->
+				<select v-model="theOne">
+					<option disabled value="">Who is the one?</option>
+					<option v-for="person in people" :value="person">{{ person.name }}</option>
+				</select>
+			</color-block>
 		</div>
 	</main>
 	
@@ -89,14 +105,26 @@
 				buttonTitle: 'If you click me, a message will appear above me.',
 				
 				textList: [
-						'I',
-						'am',
-						'an array!'
-					],
+					'I',
+					'am',
+					'an array!'
+				],
 				
 				dataBidingVariable: "Hello world!",
 
 				isEmergency: false,
+
+				theOne: '',
+				people: [
+					{
+						name: 'Neo',
+						age: '37'
+					},
+					{
+						name: 'Me',
+						age: 'unknown'
+					}
+				]
 			},
 			methods: {
 				toggleAppeareance: function() {
