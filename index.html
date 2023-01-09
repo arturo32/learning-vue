@@ -11,12 +11,14 @@
 		<h1>Learning Vue!</h1>
 	</header>
 	<main >
-		<div id="theVueElement">
+
+		<!-- Note the syntax for binding inline styles to elements -->
+		<div id="theVueElement" :style="{backgroundColor: bgColorParent}">
 			<color-block title="Reactive Data">
 				Look at this beautiful piece of reactive data: 
-				<div :title="reactiveAttribute">
+				<p :title="reactiveAttribute">
 					{{firstReactiveData}}
-				</div>
+				</p>
 			</color-block>
 
 			<color-block title="Conditional Rendering">
@@ -77,6 +79,10 @@
 					<option v-for="person in people" :value="person">{{ person.name }}</option>
 				</select>
 			</color-block>
+
+			<color-block title="Event from child to parent">
+				<test-communication v-on:change-bg-color="bgColorParent=$event"></test-communication>
+			</color-block>
 		</div>
 	</main>
 	
@@ -91,7 +97,27 @@
 	<script type="text/javascript">
 		Vue.component('color-block', {
 			props: ['title'],
-			template: '<div class="color-block"><h2>{{ title }}</h2><slot></slot></div>'
+			template: 
+				'<div class="color-block">' + 
+					'<h2>{{ title }}</h2>' +
+					'<slot></slot>' + 
+				'</div>'
+		});
+
+		Vue.component('test-communication', {
+			template: 
+				`<div>
+					<label for="color">
+						Type the new background color:
+					</label>
+					<input v-model="bgColorChild" type="text" id="color"></input>
+					<button @click="$emit('change-bg-color', bgColorChild)" title="Change the color of the background!">Change!</button>
+				</div>`,
+			data: function () {
+				return {
+					bgColorChild: ''
+				}
+			}
 		});
 
 		var vueInstance = new Vue({
@@ -124,7 +150,9 @@
 						name: 'Me',
 						age: 'unknown'
 					}
-				]
+				],
+
+				bgColorParent: ''
 			},
 			methods: {
 				toggleAppeareance: function() {
