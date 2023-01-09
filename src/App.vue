@@ -1,19 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Learning Vue!</title>
-	<link rel="stylesheet" type="text/css" href="index.css">	
-</head>
-<body>
-	<header>
-		<h1>Learning Vue!</h1>
-	</header>
-	<main >
-
+<template>
+	
+	<main>
 		<!-- Note the syntax for binding inline styles to elements -->
-		<div id="theVueElement" :style="{backgroundColor: bgColorParent}">
+		<div id="main" :style="{backgroundColor: bgColorParent}">
 			<color-block title="Reactive Data">
 				Look at this beautiful piece of reactive data: 
 				<p :title="reactiveAttribute">
@@ -85,44 +74,21 @@
 			</color-block>
 		</div>
 	</main>
-	
-	
+</template>
+
+<script type="text/javascript">
+	import Vue from 'vue';
+	import colorBlock from './colorBlock.vue';
+	import testCommunication from './testCommunication.vue';
 
 
-
-
-	<!-- development version, includes helpful console warnings -->
-	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-
-	<script type="text/javascript">
-		Vue.component('color-block', {
-			props: ['title'],
-			template: 
-				'<div class="color-block">' + 
-					'<h2>{{ title }}</h2>' +
-					'<slot></slot>' + 
-				'</div>'
-		});
-
-		Vue.component('test-communication', {
-			template: 
-				`<div>
-					<label for="color">
-						Type the new background color:
-					</label>
-					<input v-model="bgColorChild" type="text" id="color"></input>
-					<button @click="$emit('change-bg-color', bgColorChild)" title="Change the color of the background!">Change!</button>
-				</div>`,
-			data: function () {
-				return {
-					bgColorChild: ''
-				}
-			}
-		});
-
-		var vueInstance = new Vue({
-			el: '#theVueElement',
-			data: {
+	export default {
+		components: {
+			'color-block': colorBlock,
+			'test-communication': testCommunication
+		},
+		data: function() {
+			return {
 				firstReactiveData: 'OMG this is really a reactive data. Try changing me at the console with "vueInstance.firstReactiveData".',
 				
 				reactiveAttribute: 'Hello! This title attribute is controlled by a Vue directive (v-bind).',
@@ -153,37 +119,36 @@
 				],
 
 				bgColorParent: ''
-			},
-			methods: {
-				toggleAppeareance: function() {
-					this.showTitle = !this.showTitle;
-					if(this.showTitle) {
-						this.buttonTitle = 'If you click me, the message above will vanish!'
-					}
-					else {
-						this.buttonTitle = 'If you click me, a message will appear above me.'
-					}
+			};
+		},
+		methods: {
+			toggleAppeareance: function() {
+				this.showTitle = !this.showTitle;
+				if(this.showTitle) {
+					this.buttonTitle = 'If you click me, the message above will vanish!'
 				}
-			},
-			computed: {
-				/*computedDataBidingVariable: function() {
-					return this.dataBidingVariable.split('').reverse().join('');
-				}*/
-
-				computedDataBidingVariable: {
-					get: function() {
-						return this.dataBidingVariable.split('').reverse().join('');	
-
-					},
-
-					// A setter can define what happens when you change the computed property directly
-					set: function(newValue) {
-						this.dataBidingVariable = newValue.split('').reverse().join('');
-					}
+				else {
+					this.buttonTitle = 'If you click me, a message will appear above me.'
 				}
-
 			}
-		})
-	</script>
-</body>
-</html>
+		},
+		computed: {
+			/*computedDataBidingVariable: function() {
+				return this.dataBidingVariable.split('').reverse().join('');
+			}*/
+
+			computedDataBidingVariable: {
+				get: function() {
+					return this.dataBidingVariable.split('').reverse().join('');	
+
+				},
+
+				// A setter can define what happens when you change the computed property directly
+				set: function(newValue) {
+					this.dataBidingVariable = newValue.split('').reverse().join('');
+				}
+			}
+
+		}
+	}
+</script>
